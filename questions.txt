@@ -1,4 +1,0 @@
-3
-1:B:Who designed the Eiffel Tower?:Minah:Mamat:Joyah
-2:C:Where is this building located?:Tokyo:Paris:Kuala Lumpur:klcc.png
-1:C:Who shot JF Kennedy?:Mamat:Minah:None of the above
