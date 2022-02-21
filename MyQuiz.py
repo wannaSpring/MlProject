@@ -170,39 +170,52 @@ class MyApp(object):
         self.frame = Tk.Frame(parent)
         self.applicationForm = ApplicationForm()
 
-        Tk.Label(self.root, text="Name:", fg="blue").grid(row=0, sticky='E')
+        Tk.Label(self.root, text="Name:", fg="blue").grid(row=0, sticky=Tk.E)
         self.applicationForm.name = Tk.Entry(self.root)
-        self.applicationForm.name.grid(row=0, column=1)
+        self.applicationForm.name.grid(row=0, column=1, sticky=Tk.W)
 
-        Tk.Label(self.root, text="Age:", fg="blue").grid(row=1, sticky='E')
+        Tk.Label(self.root, text="Age:", fg="blue").grid(row=1, sticky=Tk.E)
         self.applicationForm.age = Tk.Entry(self.root)
-        self.applicationForm.age.grid(row=1, column=1, padx=10, pady=10)
+        self.applicationForm.age.grid(row=1, column=1, sticky=Tk.W)
 
-        Tk.Label(self.root, text="Gender:", fg="blue").grid(row=2, sticky='E')
+        Tk.Label(self.root, text="Gender:", fg="blue").grid(row=2, sticky=Tk.E)
         radioValue = Tk.IntVar()
         rdioOne = Tk.Radiobutton(self.root, text='male', variable=radioValue, value=1)
         rdioTwo = Tk.Radiobutton(self.root, text='female', variable=radioValue, value=0)
         self.applicationForm.gender = radioValue
         rdioOne.grid(row=2, column=1)
-        rdioTwo.grid(row=2, column=1, sticky='W')
+        rdioTwo.grid(row=2, column=1, sticky=Tk.W)
 
-        Tk.Label(self.root, text="Qualifications:", fg="blue").grid(row=3, sticky='E')
-        self.applicationForm.highestQualifications = Tk.Entry(self.root)
-        self.applicationForm.highestQualifications.grid(row=3, column=1, padx=10, pady=10)
-
-        Tk.Label(self.root, text="Family want move?", fg="blue").grid(row=4, sticky='E')
+        Tk.Label(self.root, text="Family want move?", fg="blue").grid(row=4, sticky=Tk.E)
         familyValue = Tk.IntVar()
         familyRdioOne = Tk.Radiobutton(self.root, text='true', variable=familyValue, value=False)
         familyRdioTwo = Tk.Radiobutton(self.root, text='false', variable=familyValue, value=True)
         self.applicationForm.familyToMove = familyValue
-        familyRdioOne.grid(row=4, column=1)
-        familyRdioTwo.grid(row=4, column=1, sticky='W')
+        familyRdioOne.grid(row=3, column=1)
+        familyRdioTwo.grid(row=3, column=1, sticky=Tk.W)
 
-        Tk.Label(self.root, text="EconomicLevel:", fg="blue").grid(row=5, sticky='E')
-        self.applicationForm.economicLevel = Tk.Entry(self.root)
-        self.applicationForm.economicLevel.grid(row=5, column=1, padx=10, pady=10)
+        Tk.Label(self.root, text="Qualifications:", fg="blue").grid(row=3, sticky=Tk.E)
+        hqValue = Tk.IntVar()
+        hqRdioOne = Tk.Radiobutton(self.root, text='PhD', variable=hqValue, value=0)
+        hqRdioTwo = Tk.Radiobutton(self.root, text='Undergraduate', variable=hqValue, value=1)
+        hqRdioThree = Tk.Radiobutton(self.root, text='Masters', variable=hqValue, value=2)
+        self.applicationForm.highestQualifications = hqValue
+        hqRdioOne.grid(row=4, column=1, sticky=Tk.W, columnspan=4)
+        hqRdioTwo.grid(row=4, column=1, sticky=Tk.W, padx=60, columnspan=4)
+        hqRdioThree.grid(row=4, column=1, sticky=Tk.W, padx=190, columnspan=4)
 
-        Tk.Button(self.root, text="Proceed", command=self.openFrame).grid(row=6, column=1, columnspan=2)
+        Tk.Label(self.root, text="EconomicLevel:", fg="blue").grid(row=5, sticky=Tk.E)
+        eclValue = Tk.IntVar()
+        eclRdioOne = Tk.Radiobutton(self.root, text='poor', variable=eclValue, value=0)
+        eclRdioTwo = Tk.Radiobutton(self.root, text='normal', variable=eclValue, value=1)
+        eclRdioThree = Tk.Radiobutton(self.root, text='rich', variable=eclValue, value=2)
+        self.applicationForm.economicLevel = eclValue
+        eclRdioOne.grid(row=5, column=1, sticky=Tk.W, columnspan=4)
+        eclRdioTwo.grid(row=5, column=1, sticky=Tk.W, padx=60, columnspan=4)
+        eclRdioThree.grid(row=5, column=1, sticky=Tk.W, padx=190, columnspan=4)
+
+        Tk.Button(self.root, text="Proceed", command=self.openFrame).grid(row=8, column=1, pady=10,
+                                                                          sticky=Tk.W + Tk.E + Tk.N + Tk.S)
 
         pub.subscribe(self.writeFile, 'submit')
 
@@ -235,6 +248,6 @@ class MyApp(object):
 
 if __name__ == "__main__":
     root = Tk.Tk()
-    root.geometry("300x300")
+    root.geometry("400x200")
     app = MyApp(root)
     root.mainloop()
